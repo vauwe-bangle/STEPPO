@@ -1,7 +1,9 @@
 # STEPPO
 
-### **Schrittz‰hler**
+### **Schrittz√§hler**
 
-**mit variabler Schrittl‰nge**
+**mit variabler Schrittl√§nge**
 
 ![STEPPO-START.png]
+
+![The San Juan Mountains are beautiful!](STEPPO-START.png)
