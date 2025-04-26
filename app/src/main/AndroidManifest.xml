@@ -12,9 +12,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/fuss"
+        android:icon="@drawable/fuss2"
         android:label="STEPPO"
-        android:roundIcon="@drawable/fuss"
+        android:roundIcon="@drawable/fuss2"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
         <activity

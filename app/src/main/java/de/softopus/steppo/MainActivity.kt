@@ -19,7 +19,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -32,6 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -59,7 +62,7 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            SteppoTheme {
+            MaterialTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -181,7 +184,7 @@ fun SteppoApp(viewModel: StepCounterViewModel = viewModel()) {
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Control buttons
+        // Control buttons with improved size and color change
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
@@ -192,15 +195,38 @@ fun SteppoApp(viewModel: StepCounterViewModel = viewModel()) {
                         viewModel.resetCounters()
                         viewModel.startTracking()
                     }
-                }
+                },
+                modifier = Modifier
+                    .weight(1f)
+                    .height(60.dp)
+                    .padding(horizontal = 8.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (viewModel.isTracking) Color.Yellow else MaterialTheme.colorScheme.primary,
+                    contentColor = if (viewModel.isTracking) Color.Black else MaterialTheme.colorScheme.onPrimary
+                )
             ) {
-                Text(text = "START")
+                Text(
+                    text = "START",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
             }
 
             Button(
-                onClick = { viewModel.stopTracking() }
+                onClick = { viewModel.stopTracking() },
+                modifier = Modifier
+                    .weight(1f)
+                    .height(60.dp)
+                    .padding(horizontal = 8.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary
+                )
             ) {
-                Text(text = "STOP")
+                Text(
+                    text = "STOP",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
             }
         }
     }
@@ -235,13 +261,4 @@ fun CounterCard(title: String, value: String) {
             )
         }
     }
-}
-
-@Composable
-fun SteppoTheme(content: @Composable () -> Unit) {
-    MaterialTheme(
-        colorScheme = MaterialTheme.colorScheme,
-        typography = MaterialTheme.typography,
-        content = content
-    )
 }
